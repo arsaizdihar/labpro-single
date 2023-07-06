@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1688678067113,
+      "tag": "0000_lovely_warstar",
+      "breakpoints": true
+    }
+  ]
+}
