@@ -17,7 +17,8 @@ export const users = pgTable(
       .notNull()
       .defaultNow(),
   },
-  (users) => ({
-    usernameIndex: uniqueIndex('username_index').on(users.username),
-  }),
+  (users) =>
+    ({
+      usernameIndex: uniqueIndex('username_index').on(users.username),
+    } as const),
 );
