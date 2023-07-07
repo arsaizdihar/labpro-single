@@ -11,6 +11,7 @@ async function bootstrap() {
     new ZodValidationExceptionFilter(),
   );
   app.useGlobalInterceptors(new ResponseInterceptor());
+  app.enableCors({ origin: '*' });
   await app.listen(3000);
 }
 bootstrap();

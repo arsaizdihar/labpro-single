@@ -27,9 +27,6 @@ export class AuthService {
   }
 
   signToken(id: number, username: string) {
-    console.log(id, username);
-    console.log(this.config.get('JWT_SECRET'));
-    console.log(this.jwt);
-    return this.jwt.sign({ sub: id });
+    return this.jwt.sign({ sub: id, username });
   }
 }

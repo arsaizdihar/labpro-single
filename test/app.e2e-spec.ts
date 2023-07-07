@@ -60,7 +60,7 @@ describe('AppController (e2e)', () => {
     it('should get current user', async () => {
       const response = await request(app.getHttpServer())
         .get('/self')
-        .set('Authorization', `Bearer ${token}`)
+        .set('Authorization', token)
         .expect(200);
       expect(response.body).toBeDefined();
       expect(response.body.status).toBe('success');
