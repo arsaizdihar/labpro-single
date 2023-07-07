@@ -9,26 +9,6 @@ jobs:
     # Docker Hub image that `container-job` executes in
     container: node:18
 
-    # Service containers to run with `container-job`
-    services:
-      # Label used to access the service container
-      postgres:
-        # Docker Hub image
-        image: postgres
-        ports:
-          - 5434:5432
-        # Provide the password for postgres
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: 123
-          POSTGRES_DB: nest
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
       # Downloads a copy of the code in your repository before running CI tests
       - name: Check out repository code
@@ -43,12 +23,17 @@ jobs:
         # Runs a script that creates a PostgreSQL table, populates
         # the table with data, and then retrieves the data.
         run: yarn db:migrate-test
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Run unit tests
         run: yarn test
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          JWT_SECRET: 'super-secret'
 
       - name: Run e2e tests
         run: yarn test:e2e
-
-
-
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          JWT_SECRET: 'super-secret'
