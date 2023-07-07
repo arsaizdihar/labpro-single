@@ -29,7 +29,7 @@ describe('AppController (e2e)', () => {
     );
     app.useGlobalInterceptors(new ResponseInterceptor());
     db = app.get<DrizzleType>(Drizzle);
-    runSeed(db);
+    await runSeed(db);
     await app.init();
   });
 
