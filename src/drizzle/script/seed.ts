@@ -16,13 +16,13 @@ export async function runSeed(db?: DrizzleType) {
     await tx.delete(users);
     await tx.delete(items);
     await tx.delete(companies);
-    await db.insert(users).values({
+    await tx.insert(users).values({
       name: 'Admin',
       username: 'admin',
       password: bcrypt.hashSync('admin1234'),
     });
 
-    const [comp] = await db
+    const [comp] = await tx
       .insert(companies)
       .values({
         nama: 'PT. Maju Mundur',
@@ -32,7 +32,7 @@ export async function runSeed(db?: DrizzleType) {
       })
       .returning();
 
-    await db.insert(items).values({
+    await tx.insert(items).values({
       harga: 10000,
       kode: 'MM-001',
       nama: 'Buku Tulis',
