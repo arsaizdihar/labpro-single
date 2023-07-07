@@ -1,6 +1,4 @@
 import { DrizzleModule } from '@/drizzle/drizzle.module';
-import { Drizzle, DrizzleType } from '@/drizzle/drizzle.provider';
-import { runSeed } from '@/drizzle/script/seed';
 import { ConfigModule } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
@@ -23,13 +21,10 @@ describe('AuthService', () => {
       .compile();
 
     service = module.get<AuthService>(AuthService);
-    const db = module.get<DrizzleType>(Drizzle);
-    await runSeed(db);
   });
 
   afterAll(async () => {
-    await module.get<DrizzleType>(Drizzle).end();
-    await module.close();
+    globalThis._client?.end();
   });
 
   it('should be defined', () => {

@@ -8,16 +8,24 @@ export interface DrizzleType extends PostgresJsDatabase<typeof schema> {
   end?: () => Promise<void>;
 }
 
+declare global {
+  // eslint-disable-next-line no-var
+  var _client: postgres.Sql | undefined;
+}
+
 export const Drizzle = Symbol('Drizzle');
 
 export const DrizzleProvider: FactoryProvider<DrizzleType> = {
   provide: Drizzle,
   inject: [ConfigService],
   useFactory(config: ConfigService) {
-    const client = postgres(config.get('DATABASE_URL'));
+    const client = globalThis._client ?? postgres(config.get('DATABASE_URL'));
+    globalThis._client = client;
+
     const db: DrizzleType = drizzle(client, { schema });
     db.end = async () => {
       await client.end();
+      globalThis._client = undefined;
     };
     return db;
   },

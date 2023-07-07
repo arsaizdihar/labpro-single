@@ -25,6 +25,10 @@ describe('AuthController', () => {
     controller = module.get<AuthController>(AuthController);
   });
 
+  afterAll(async () => {
+    globalThis._client?.end();
+  });
+
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
@@ -39,7 +43,7 @@ describe('AuthController', () => {
 
   it('should return current user', async () => {
     const user: UserData = {
-      id: 1,
+      id: 'asdads',
       name: 'test',
       username: 'test',
     };

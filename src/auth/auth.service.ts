@@ -2,7 +2,6 @@ import { Drizzle, DrizzleType } from '@/drizzle/drizzle.provider';
 import { users } from '@/drizzle/schema';
 import { HttpExceptionData } from '@/http/http-exception-data';
 import { HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import bcrypt from 'bcryptjs';
 import { eq } from 'drizzle-orm';
@@ -11,7 +10,6 @@ export class AuthService {
   constructor(
     @Inject(Drizzle) private readonly db: DrizzleType,
     private jwt: JwtService,
-    private config: ConfigService,
   ) {}
 
   async login(username: string, password: string) {
@@ -31,7 +29,7 @@ export class AuthService {
     return { user, token };
   }
 
-  signToken(id: number, username: string) {
+  signToken(id: string, username: string) {
     return this.jwt.sign({ sub: id, username });
   }
 }

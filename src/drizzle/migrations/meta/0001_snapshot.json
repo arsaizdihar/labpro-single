@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "5c84b08b-fe2c-4166-be68-6bf55078706b",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "3b43ad8a-7d22-47f1-91ee-9bb08c28c617",
+  "prevId": "5c84b08b-fe2c-4166-be68-6bf55078706b",
   "tables": {
     "companies": {
       "name": "companies",
@@ -63,7 +63,7 @@
         },
         "price": {
           "name": "price",
-          "type": "numeric",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
