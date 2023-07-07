@@ -1,4 +1,4 @@
-name: Integration testing
+name: CI/CD
 on: push
 
 jobs:
@@ -37,3 +37,9 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           JWT_SECRET: 'super-secret'
+
+      - name: Deploy to prod
+        uses: digitalocean/app_action@v1.1.5
+        with:
+          app_name: labpro-single
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}

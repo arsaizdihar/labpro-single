@@ -1,8 +1,8 @@
-import { justThrow } from '@/utils';
 import bcrypt from 'bcryptjs';
 import * as dotenv from 'dotenv';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
+import { justThrow } from '../../utils';
 import { DrizzleType } from '../drizzle.provider';
 import { companies, items, users } from '../schema';
 
