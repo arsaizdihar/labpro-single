@@ -24,9 +24,8 @@ export class AuthService {
         {},
       );
     }
-    delete user.password;
     const token = this.signToken(user.id, user.username);
-    return { user, token };
+    return { user: { ...user, password: undefined }, token };
   }
 
   signToken(id: string, username: string) {

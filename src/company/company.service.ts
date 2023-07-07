@@ -2,7 +2,7 @@ import { Drizzle, DrizzleType } from '@/drizzle/drizzle.provider';
 import { companies } from '@/drizzle/schema';
 import { HttpExceptionData } from '@/http/http-exception-data';
 import { HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+import { eq, ilike, or } from 'drizzle-orm';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
 
@@ -22,8 +22,16 @@ export class CompanyService {
       .returning();
   }
 
-  findAll() {
-    return this.db.select().from(companies).execute();
+  findAll(q?: string) {
+    return this.db
+      .select()
+      .from(companies)
+      .where(
+        q
+          ? or(ilike(companies.nama, `%${q}%`), ilike(companies.kode, `%${q}%`))
+          : undefined,
+      )
+      .execute();
   }
 
   async findOne(id: string) {

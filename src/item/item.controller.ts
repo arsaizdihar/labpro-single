@@ -1,3 +1,4 @@
+import { JwtGuard } from '@/auth/guard';
 import {
   Body,
   Controller,
@@ -7,12 +8,16 @@ import {
   Patch,
   Post,
   Put,
+  Query,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateItemDto } from './dto/create-item.dto';
+import { GetItemsDto } from './dto/get-items.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { ItemService } from './item.service';
 
 @Controller('barang')
+@UseGuards(JwtGuard)
 export class ItemController {
   constructor(private readonly itemService: ItemService) {}
 
@@ -22,8 +27,8 @@ export class ItemController {
   }
 
   @Get()
-  findAll() {
-    return this.itemService.findAll();
+  findAll(@Query() query: GetItemsDto) {
+    return this.itemService.findAll(query);
   }
 
   @Get(':id')

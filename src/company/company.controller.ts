@@ -1,3 +1,4 @@
+import { JwtGuard } from '@/auth/guard';
 import {
   Body,
   Controller,
@@ -7,11 +8,15 @@ import {
   Patch,
   Post,
   Put,
+  Query,
+  UseGuards,
 } from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
+import { GetCompaniesDto } from './dto/get-companies.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
 
+@UseGuards(JwtGuard)
 @Controller('perusahaan')
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
@@ -22,8 +27,8 @@ export class CompanyController {
   }
 
   @Get()
-  findAll() {
-    return this.companyService.findAll();
+  findAll(@Query() query: GetCompaniesDto) {
+    return this.companyService.findAll(query.q);
   }
 
   @Get(':id')

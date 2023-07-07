@@ -2,8 +2,9 @@ import { Drizzle, DrizzleType } from '@/drizzle/drizzle.provider';
 import { items } from '@/drizzle/schema';
 import { HttpExceptionData } from '@/http/http-exception-data';
 import { HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+import { and, eq, ilike, or } from 'drizzle-orm';
 import { CreateItemDto } from './dto/create-item.dto';
+import { GetItemsDto } from './dto/get-items.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 
 @Injectable()
@@ -11,20 +12,27 @@ export class ItemService {
   constructor(@Inject(Drizzle) private readonly db: DrizzleType) {}
 
   async create(data: CreateItemDto) {
-    return await this.db
-      .insert(items)
-      .values({
-        harga: data.harga,
-        kode: data.kode,
-        nama: data.nama,
-        stok: data.stok,
-        perusahaan_id: data.perusahaan,
-      })
-      .returning();
+    return await this.db.insert(items).values(data).returning();
   }
 
-  findAll() {
-    return this.db.select().from(items).execute();
+  findAll(query: GetItemsDto) {
+    return this.db
+      .select()
+      .from(items)
+      .where(
+        and(
+          query.q
+            ? or(
+                ilike(items.nama, `%${query.q}%`),
+                ilike(items.kode, `%${query.q}%`),
+              )
+            : undefined,
+          query.perusahaan_id
+            ? eq(items.perusahaan_id, query.perusahaan_id)
+            : undefined,
+        ),
+      )
+      .execute();
   }
 
   async findOne(id: string) {
@@ -38,13 +46,7 @@ export class ItemService {
   async update(id: string, data: UpdateItemDto) {
     const [result] = await this.db
       .update(items)
-      .set({
-        harga: data.harga,
-        kode: data.kode,
-        nama: data.nama,
-        stok: data.stok,
-        perusahaan_id: data.perusahaan,
-      })
+      .set(data)
       .where(eq(items.id, id))
       .returning();
 

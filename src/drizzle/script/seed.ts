@@ -1,3 +1,4 @@
+import { justThrow } from '@/utils';
 import bcrypt from 'bcryptjs';
 import * as dotenv from 'dotenv';
 import { drizzle } from 'drizzle-orm/postgres-js';
@@ -9,7 +10,9 @@ dotenv.config();
 export async function runSeed(db?: DrizzleType) {
   let client: postgres.Sql | undefined;
   if (!db) {
-    client = postgres(process.env.DATABASE_URL);
+    client = postgres(
+      process.env.DATABASE_URL ?? justThrow('DATABASE_URL not found'),
+    );
     db = drizzle(client);
   }
   await db.transaction(async (tx) => {
