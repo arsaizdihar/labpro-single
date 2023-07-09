@@ -11,4 +11,5 @@ export default {
       process.env.DATABASE_URL ?? justThrow('DATABASE_URL not found'),
   },
   out: './src/drizzle/migrations',
+  verbose: true,
 } satisfies Config;

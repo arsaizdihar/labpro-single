@@ -15,6 +15,13 @@
       "when": 1688703525105,
       "tag": "0001_panoramic_valkyrie",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1688878428370,
+      "tag": "0002_sharp_epoch",
+      "breakpoints": true
     }
   ]
 }

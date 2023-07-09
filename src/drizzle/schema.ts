@@ -45,7 +45,7 @@ export const items = pgTable('items', {
   kode: text('code').notNull(),
   perusahaan_id: uuid('company_id')
     .notNull()
-    .references(() => companies.id),
+    .references(() => companies.id, { onDelete: 'cascade' }),
 });
 
 export const itemsRelations = relations(items, ({ one }) => ({
