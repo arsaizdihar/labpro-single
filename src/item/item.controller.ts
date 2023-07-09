@@ -5,7 +5,6 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
   Post,
   Put,
   Query,
@@ -36,7 +35,6 @@ export class ItemController {
     return this.itemService.findOne(id);
   }
 
-  @Patch(':id')
   @Put(':id')
   update(@Param('id') id: string, @Body() updateItemDto: UpdateItemDto) {
     return this.itemService.update(id, updateItemDto);
