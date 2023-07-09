@@ -1,6 +1,8 @@
 name: CD
 on:
   workflow_run:
+    workflows:
+      - CI
     branches:
       - main
     types:
@@ -17,4 +19,4 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          script: cd ~/apps/${{github.repository.name}} && git pull && docker-compose up -d --build
+          script: cd ~/apps/labpro-single && git pull && docker-compose up -d --build
