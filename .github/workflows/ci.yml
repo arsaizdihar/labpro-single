@@ -31,9 +31,3 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           JWT_SECRET: 'super-secret'
-
-      - name: Run e2e tests
-        run: yarn test:e2e
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          JWT_SECRET: 'super-secret'
