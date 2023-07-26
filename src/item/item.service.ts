@@ -27,8 +27,8 @@ export class ItemService {
                 ilike(items.kode, `%${query.q}%`),
               )
             : undefined,
-          query.perusahaan_id
-            ? eq(items.perusahaan_id, query.perusahaan_id)
+          query.perusahaan
+            ? eq(items.perusahaan_id, query.perusahaan)
             : undefined,
         ),
       )
