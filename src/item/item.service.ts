@@ -33,7 +33,9 @@ export class ItemService {
         ),
       );
     if (query.page && query.limit) {
-      dbQuery = dbQuery.limit(query.limit).offset(query.page * query.limit);
+      dbQuery = dbQuery
+        .limit(query.limit)
+        .offset((query.page - 1) * query.limit);
     }
     return dbQuery;
   }
@@ -69,5 +71,23 @@ export class ItemService {
       throw new HttpExceptionData('Item not found', HttpStatus.NOT_FOUND);
     }
     return result;
+  }
+
+  async buy(id: string, total: number) {
+    const [item] = await this.db.select().from(items).where(eq(items.id, id));
+    if (!item) {
+      throw new HttpExceptionData('Item not found', HttpStatus.NOT_FOUND);
+    }
+    if (item.stok < total) {
+      throw new HttpExceptionData(
+        'Not enough stock',
+        HttpStatus.UNPROCESSABLE_ENTITY,
+      );
+    }
+    return await this.db
+      .update(items)
+      .set({ stok: item.stok - total })
+      .where(eq(items.id, id))
+      .returning();
   }
 }
