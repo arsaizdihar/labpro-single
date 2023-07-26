@@ -2,7 +2,7 @@ import { Drizzle, DrizzleType } from '@/drizzle/drizzle.provider';
 import { items } from '@/drizzle/schema';
 import { HttpExceptionData } from '@/http/http-exception-data';
 import { HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { and, eq, ilike, or } from 'drizzle-orm';
+import { and, eq, ilike, or, sql } from 'drizzle-orm';
 import { CreateItemDto } from './dto/create-item.dto';
 import { GetItemsDto } from './dto/get-items.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
@@ -89,5 +89,12 @@ export class ItemService {
       .set({ stok: item.stok - total })
       .where(eq(items.id, id))
       .returning();
+  }
+
+  async count() {
+    const [{ count }] = await this.db
+      .select({ count: sql<number>`COUNT(*)`.mapWith(Number) })
+      .from(items);
+    return count;
   }
 }

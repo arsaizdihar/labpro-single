@@ -33,6 +33,12 @@ export class ItemController {
     return this.itemService.findAll(query);
   }
 
+  @Get('count')
+  @UseGuards(JwtOrServiceGuard)
+  count() {
+    return this.itemService.count();
+  }
+
   @Get(':id')
   @UseGuards(JwtOrServiceGuard)
   findOne(@Param('id') id: string) {
