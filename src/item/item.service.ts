@@ -16,7 +16,7 @@ export class ItemService {
   }
 
   findAll(query: GetItemsDto) {
-    return this.db
+    let dbQuery = this.db
       .select()
       .from(items)
       .where(
@@ -31,8 +31,11 @@ export class ItemService {
             ? eq(items.perusahaan_id, query.perusahaan)
             : undefined,
         ),
-      )
-      .execute();
+      );
+    if (query.page && query.limit) {
+      dbQuery = dbQuery.limit(query.limit).offset(query.page * query.limit);
+    }
+    return dbQuery;
   }
 
   async findOne(id: string) {
