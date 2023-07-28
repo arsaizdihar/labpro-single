@@ -12,7 +12,11 @@ export class ItemService {
   constructor(@Inject(Drizzle) private readonly db: DrizzleType) {}
 
   async create(data: CreateItemDto) {
-    return await this.db.insert(items).values(data).returning();
+    return await this.db
+      .insert(items)
+      .values(data)
+      .returning()
+      .then((res) => res[0]);
   }
 
   findAll(query: GetItemsDto) {

@@ -19,7 +19,8 @@ export class CompanyService {
         kode: data.kode,
         no_telp: data.no_telp,
       })
-      .returning();
+      .returning()
+      .then((res) => res[0]);
   }
 
   findAll(q?: string) {
