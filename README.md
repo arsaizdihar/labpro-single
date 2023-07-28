@@ -51,17 +51,18 @@ Seperti yang sudah disebutkan juga, sudah terdapat dokumentasi api berupa Swagge
 
 3. SOLID
   
-S: Setiap modul memiliki fungsinya masing-masing. Misalkan service berisi business logic dan controller berisi logic untuk menghandle request.
+- S: Setiap modul memiliki fungsinya masing-masing. Misalkan service berisi business logic dan controller berisi logic untuk menghandle request.
 
-O: Pada bagian dto, schema validasi dapat di extend dengan .extend. Selain itu, service juga bisa ditambahkan fungsi-fungsi tanpa mengubah fungsi yang sudah ada.
+- O: Pada bagian dto, schema validasi dapat di extend dengan .extend. Selain itu, service juga bisa ditambahkan fungsi-fungsi tanpa mengubah fungsi yang sudah ada.
 
-L: Bagian ini terlihat pada exception handling, yaitu keseluruhan class dan superclass memiliki karakteristik yang sama yaitu menerima error dan melakukan sesuatu untuk menghandle error tersebut dan mengembalikannya ke user.
+- L: Bagian ini terlihat pada exception handling, yaitu keseluruhan class dan superclass memiliki karakteristik yang sama yaitu menerima error dan melakukan sesuatu untuk menghandle error tersebut dan mengembalikannya ke user.
 
-I: Pada Nestjs, modul-modul yang lain dapat diinjeksi asal suatu modul tersebut diberikan decorator injectable atau merupakan factory dsb.
+- I: Pada Nestjs, modul-modul yang lain dapat diinjeksi asal suatu modul tersebut diberikan decorator injectable atau merupakan factory dsb.
 
-D: Pada bagian guard, dapat diimplementasikan dengan bergantung pada interface Guard dari NestJS.
+- D: Pada bagian guard, dapat diimplementasikan dengan bergantung pada interface Guard dari NestJS.
 
 4. Testing
+
 Testing dibuat untuk setiap endpoint API dengan coverage sebagai berikut ![Coverage](./img/coverage.png) yaitu line coverage sebesar 90.47%.
 
 5. Fitur tambahan
