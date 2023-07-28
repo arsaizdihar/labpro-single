@@ -1,73 +1,68 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Single Service OHL Labpro
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Nama: Arsa Izdihar Islam
+NIM: 13521101
+
+## Deployment
+Api ini sudah di-deploy pada [https://asd-single.arsaizdihar.com](https://ohl-single.arsaizdihar.com) dengan api dokumen di [https://ohl-single.arsaizdihar.com/api](https://ohl-single.arsaizdihar.com/api)
+
+## Tech stack
+- NestJS
+- Typescript
+- DrizzleORM
+- Zod
+
+## How to run
+
+1. Install docker
+2. Jalankan `docker-compose -f docker-compose-dev.yml up -d --build`
+3. Api akan berjalan pada port 3000. Buka http://localhost:3000/api untuk melihat dokumentasi api.
+
+## Design patterns
+
+1. Dependency Injection
+Design pattern ini sangat dititikberatkan pada framework Nestjs yaitu pada module module-nya. Setiap bagian pada Nestjs dapat di-inject dengan suatu modul.
+
+2. Repository Pattern
+Design pattern ini digunakan untuk memisahkan antara business logic dengan logic untuk mengakses database. Repository pattern ini digunakan pada bagian service.
+
+3. Factory Method dan Singleton
+Metode ini digunakan untuk membuat koneksi database.
+
+4. Decorator
+Design pattern ini digunakan pada banyak bagian di NestJS. Digunakan baik pada class, method, maupun property untuk menambahkan fungsional.
+
+## Endpoint
+Keseluruhan endpoint dapat dilihat pada dokumentasi api yaitu di [https://ohl-single.arsaizdihar.com/api](https://ohl-single.arsaizdihar.com/api)
+
+## Bonus
+1. Deployment
   
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Seperti yang disebut di atas, api ini sudah dideploy dengan menggunakan docker di VM DigitalOcean.
 
-## Description
+2. Dokumentasi API
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Seperti yang sudah disebutkan juga, sudah terdapat dokumentasi api berupa Swagger docs.
 
-## Installation
+3. SOLID
+  
+S: Setiap modul memiliki fungsinya masing-masing. Misalkan service berisi business logic dan controller berisi logic untuk menghandle request.
 
-```bash
-$ npm install
-```
+O: Pada bagian dto, schema validasi dapat di extend dengan .extend. Selain itu, service juga bisa ditambahkan fungsi-fungsi tanpa mengubah fungsi yang sudah ada.
 
-## Running the app
+L: Bagian ini terlihat pada exception handling, yaitu keseluruhan class dan superclass memiliki karakteristik yang sama yaitu menerima error dan melakukan sesuatu untuk menghandle error tersebut dan mengembalikannya ke user.
 
-```bash
-# development
-$ npm run start
+I: Pada Nestjs, modul-modul yang lain dapat diinjeksi asal suatu modul tersebut diberikan decorator injectable atau merupakan factory dsb.
 
-# watch mode
-$ npm run start:dev
+D: Pada bagian guard, dapat diimplementasikan dengan bergantung pada interface Guard dari NestJS.
 
-# production mode
-$ npm run start:prod
-```
+4. Testing
+Testing dibuat untuk setiap endpoint API dengan coverage sebagai berikut ![Coverage](./img/coverage.png) yaitu line coverage sebesar 90.47%.
 
-## Test
+5. Fitur tambahan
 
-```bash
-# unit tests
-$ npm run test
+Terdapat fitur count pada bagian get all barang dan juga fitur untuk search berdasarkan nama dan kode barang.
 
-# e2e tests
-$ npm run test:e2e
+6. Kutu kode FE Admin
 
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-  Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Saya sudah memberikan 2 PR pada bagian FE.

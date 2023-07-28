@@ -3,9 +3,9 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_PIPE } from '@nestjs/core';
 import { ZodValidationPipe } from 'nestjs-zod';
 import { AuthModule } from './auth/auth.module';
+import { CompanyModule } from './company/company.module';
 import { DrizzleModule } from './drizzle/drizzle.module';
 import { ItemModule } from './item/item.module';
-import { CompanyModule } from './company/company.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
