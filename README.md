@@ -22,15 +22,19 @@ Api ini sudah di-deploy pada [https://ohl-single.arsaizdihar.com](https://ohl-si
 ## Design patterns
 
 1. Dependency Injection
+
 Design pattern ini sangat dititikberatkan pada framework Nestjs yaitu pada module module-nya. Setiap bagian pada Nestjs dapat di-inject dengan suatu modul.
 
 2. Repository Pattern
+
 Design pattern ini digunakan untuk memisahkan antara business logic dengan logic untuk mengakses database. Repository pattern ini digunakan pada bagian service.
 
 3. Factory Method dan Singleton
+
 Metode ini digunakan untuk membuat koneksi database.
 
 4. Decorator
+
 Design pattern ini digunakan pada banyak bagian di NestJS. Digunakan baik pada class, method, maupun property untuk menambahkan fungsional.
 
 ## Endpoint
