@@ -35,8 +35,8 @@ export class ItemController {
 
   @Get('count')
   @UseGuards(JwtOrServiceGuard)
-  count() {
-    return this.itemService.count();
+  count(@Query() query: GetItemsDto) {
+    return this.itemService.count(query);
   }
 
   @Get(':id')

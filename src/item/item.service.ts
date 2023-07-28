@@ -95,10 +95,23 @@ export class ItemService {
       .returning();
   }
 
-  async count() {
+  async count(query: GetItemsDto) {
     const [{ count }] = await this.db
       .select({ count: sql<number>`COUNT(*)`.mapWith(Number) })
-      .from(items);
+      .from(items)
+      .where(
+        and(
+          query.q
+            ? or(
+                ilike(items.nama, `%${query.q}%`),
+                ilike(items.kode, `%${query.q}%`),
+              )
+            : undefined,
+          query.perusahaan
+            ? eq(items.perusahaan_id, query.perusahaan)
+            : undefined,
+        ),
+      );
     return count;
   }
 }
