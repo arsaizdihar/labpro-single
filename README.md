@@ -5,7 +5,7 @@ Nama: Arsa Izdihar Islam
 NIM: 13521101
 
 ## Deployment
-Api ini sudah di-deploy pada [https://asd-single.arsaizdihar.com](https://ohl-single.arsaizdihar.com) dengan api dokumen di [https://ohl-single.arsaizdihar.com/api](https://ohl-single.arsaizdihar.com/api)
+Api ini sudah di-deploy pada [https://ohl-single.arsaizdihar.com](https://ohl-single.arsaizdihar.com) dengan api dokumen di [https://ohl-single.arsaizdihar.com/api](https://ohl-single.arsaizdihar.com/api)
 
 ## Tech stack
 - NestJS
