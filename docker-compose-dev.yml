@@ -10,8 +10,9 @@ services:
       - ignore:/usr/src/app/node_modules/
     environment:
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
+      SERVICE_SECRET: secret
     env_file:
-    - .env
+      - .env
     # Run a command against the development stage of the image
     command: sh -c "yarn db:migrate && yarn start:dev"
     ports:
@@ -27,7 +28,7 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - labpro-single-postgres:/var/lib/postgresql/data
-  
+
 volumes:
   ignore:
   labpro-single-postgres:
