@@ -45,11 +45,15 @@ Keseluruhan endpoint dapat dilihat pada dokumentasi api yaitu di [https://ohl-si
   
 Seperti yang disebut di atas, api ini sudah dideploy dengan menggunakan docker di VM DigitalOcean.
 
-2. Dokumentasi API
+2. Single Service Implementation
+
+Sudah menggunakan typescript strict dan menggunakan Zod untuk validasi data dari frontend.
+
+3. Dokumentasi API
 
 Seperti yang sudah disebutkan juga, sudah terdapat dokumentasi api berupa Swagger docs.
 
-3. SOLID
+4. SOLID
   
 - S: Setiap modul memiliki fungsinya masing-masing. Misalkan service berisi business logic dan controller berisi logic untuk menghandle request.
 
@@ -61,14 +65,14 @@ Seperti yang sudah disebutkan juga, sudah terdapat dokumentasi api berupa Swagge
 
 - D: Pada bagian guard, dapat diimplementasikan dengan bergantung pada interface Guard dari NestJS.
 
-4. Testing
+5. Testing
 
 Testing dibuat untuk setiap endpoint API dengan coverage sebagai berikut ![Coverage](./img/coverage.png) yaitu line coverage sebesar 90.47%. Selain itu, saya juga membuat CI/CD yang menjalankan test secara otomatis menggunakan github actions dan apabila test berhasil akan langsung di-deploy ke server. Bagian ini dapat dilihat pada tab actions.
 
-5. Fitur tambahan
+6. Fitur tambahan
 
 Terdapat fitur count pada bagian get all barang dan juga fitur untuk search berdasarkan nama dan kode barang.
 
-6. Kutu kode FE Admin
+7. Kutu kode FE Admin
 
 Saya sudah memberikan 2 PR pada bagian FE.
