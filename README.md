@@ -63,7 +63,7 @@ Seperti yang sudah disebutkan juga, sudah terdapat dokumentasi api berupa Swagge
 
 4. Testing
 
-Testing dibuat untuk setiap endpoint API dengan coverage sebagai berikut ![Coverage](./img/coverage.png) yaitu line coverage sebesar 90.47%.
+Testing dibuat untuk setiap endpoint API dengan coverage sebagai berikut ![Coverage](./img/coverage.png) yaitu line coverage sebesar 90.47%. Selain itu, saya juga membuat CI/CD yang menjalankan test secara otomatis menggunakan github actions dan apabila test berhasil akan langsung di-deploy ke server. Bagian ini dapat dilihat pada tab actions.
 
 5. Fitur tambahan
 

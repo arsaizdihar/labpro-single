@@ -92,7 +92,8 @@ export class ItemService {
       .update(items)
       .set({ stok: item.stok - total })
       .where(eq(items.id, id))
-      .returning();
+      .returning()
+      .then((res) => res[0]);
   }
 
   async count(query: GetItemsDto) {
